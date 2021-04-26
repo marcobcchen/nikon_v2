@@ -19,6 +19,11 @@ const StyledButtonContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.36;
+    text-align: center;
     width: 100%;
     height: 64px;
     background-color: ${({ theme }) => theme.color.primary};
@@ -34,30 +39,19 @@ const StyledButtonContainer = styled.div`
     }
 
     &:hover{
+      color: ${({ theme }) => theme.color.primary};
       text-decoration: none;
       background-color: #fff;
-
-      p{
-        color: ${({ theme }) => theme.color.primary};
-      }
-    }
-
-    p{
-      color: #fff;
-      font-size: 19px;
-      font-weight: 700;
-      line-height: 1.36;
-      text-align: center;
     }
   }
 `;
 
-function BasicButton({ text, to }) {
+function BasicButton({ text, to, link }) {
   return (
     <StyledButtonContainer>
-      <Link to={to}>
-        <p>{text}</p>
-      </Link>
+      {link
+        ? <a href={to} target={link} rel="noreferrer">{text}</a>
+        : <Link to={to}>{text}</Link>}
     </StyledButtonContainer>
   );
 }

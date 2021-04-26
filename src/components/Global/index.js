@@ -2,13 +2,11 @@ import styled from 'styled-components';
 
 export const StyledContainerFluid = styled.div`
   width: 100%;
-  background-color: lightgreen;
 `;
 
 export const StyledContainer = styled.div`
   width: 100%;
   padding: 0;
-  /* background-color: #cfade6; */
 
   @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
     padding: 0 24px;
@@ -19,8 +17,6 @@ export const StyledWrapper = styled.div`
   width: 100%;
   max-width: 1366px;
   margin: 0 auto;
-  /* background-color: lightblue; */
-  /* height: 3000px; */
   overflow: hidden;
 `;
 
@@ -138,5 +134,31 @@ export const StyledTitle = styled.div`
   p{
     font-size: 16px;
     text-align: justify;
+  }
+`;
+
+export const StyledSuperTitle = styled.div`
+  margin: 8% 0;
+  padding: 0 24px;
+
+  @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+    margin: 4% 0;
+    padding: 0;
+  }
+
+  h2{
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
+
+    @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+      font-size: 35px;
+    }
+  }
+
+  p{
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 4%;
   }
 `;

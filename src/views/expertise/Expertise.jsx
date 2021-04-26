@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
+import { PhaseData } from '@/data/';
 import Hero from '@/components/Hero';
 import CallToAction from '@/components/CallToAction/';
 import {
@@ -24,87 +25,10 @@ import content5XSImg from '@/assets/images/expertise/content_5_xs.jpg';
 import content5MDImg from '@/assets/images/expertise/content_5_md.jpg';
 import content6XSImg from '@/assets/images/expertise/content_6_xs.jpg';
 import content6MDImg from '@/assets/images/expertise/content_6_md.jpg';
-import experience1Img from '@/assets/images/expertise/experience_1.jpg';
-import experience2Img from '@/assets/images/expertise/experience_2.jpg';
-import experience3Img from '@/assets/images/expertise/experience_3.jpg';
-import experience4Img from '@/assets/images/expertise/experience_4.jpg';
 
 import {
   StyledExperienceList, StyledExperiencePhase, StyledExperienceNav, StyledReason, StyledImg,
 } from './style';
-
-const phaseData = [
-  {
-    id: 0,
-    img: experience1Img,
-    title: '問診與驗光',
-    step: [
-      {
-        id: 1,
-        order: '第1步',
-        title: '問診',
-        description: '驗光人員會詢問用眼習慣，了解您的視力需求，並且釐清有哪些視力的困擾。',
-      },
-      {
-        id: 2,
-        order: '第2步',
-        title: '精密驗光',
-        description: '我們引進高階驗光設備，量測水晶體透明度、光線進入瞳孔的角度、日夜像差、眩光敏感度、調節力等，全方位評估視力問題。',
-      },
-    ],
-  },
-  {
-    id: 1,
-    img: experience2Img,
-    title: '評估與體驗',
-    step: [
-      {
-        id: 3,
-        order: '第3步',
-        title: '視力評估',
-        description: '綜合檢查結果，為您解讀視力問題成因與可行解決方案。',
-      },
-      {
-        id: 4,
-        order: '第4步',
-        title: '視覺體驗',
-        description: '鏡片種類玲瑯滿目，眼見為憑最重要，戴上試鏡架並動手試試展示工具，親自看看什麼鏡片最符合您的需要。',
-      },
-    ],
-  },
-  {
-    id: 2,
-    img: experience3Img,
-    title: '客製化方案',
-    step: [
-      {
-        id: 5,
-        order: '第5步',
-        title: '客製化方案',
-        description: '除了專業驗光技術，我們也是解決視力問題的專家，我們擅長推薦最符合您需求的鏡片。',
-      },
-    ],
-  },
-  {
-    id: 3,
-    img: experience4Img,
-    title: '鏡框定位與文宣',
-    step: [
-      {
-        id: 6,
-        order: '第6步',
-        title: '鏡框與定位',
-        description: '鏡框戴在臉上的角度也會影響眼前清晰程度，用準確的鏡框定位數據，為您量身打造鏡片。',
-      },
-      {
-        id: 7,
-        order: '第7步',
-        title: '文宣介紹',
-        description: '最後您會拿到一份文宣簡介，回家後還可細讀剛才的檢測介紹。',
-      },
-    ],
-  },
-];
 
 function Expertise() {
   const [phaseId, setPhaseId] = useState(0);
@@ -126,7 +50,6 @@ function Expertise() {
   const handleListStatus = (id) => {
     const newArr = [...listStatus];
     newArr[id] = !newArr[id];
-    console.log(newArr);
 
     setListStatus(newArr);
   };
@@ -139,7 +62,7 @@ function Expertise() {
         <StyledWrapper>
           <div className="visible-xs visible-sm visible-md">
             {
-              phaseData.map((phase) => (
+              PhaseData.map((phase) => (
                 <StyledExperienceList
                   key={phase.id}
                   className={listStatus[phase.id] ? 'active' : undefined}
@@ -166,7 +89,7 @@ function Expertise() {
 
           <div className="visible-lg visible-xl visible-xxl">
             {
-              phaseData.map((phase) => (
+              PhaseData.map((phase) => (
                 <CSSTransition key={phase.id} in={phaseId === phase.id} timeout={400} classNames="fade">
                   <StyledExperiencePhase
                     className={getClassName(phase.id)}
@@ -189,13 +112,19 @@ function Expertise() {
             }
 
             <StyledExperienceNav>
-              <Item id={0} img={experience1Img} text="問診與驗光" />
-              <div className="arrow" />
-              <Item id={1} img={experience2Img} text="評估與體驗" />
-              <div className="arrow" />
-              <Item id={2} img={experience3Img} text="客製化方案" />
-              <div className="arrow" />
-              <Item id={3} img={experience4Img} text="鏡框定位與文宣" />
+              {
+                PhaseData.map((phase) => {
+                  if (phase.id < PhaseData.length - 1) {
+                    return (
+                      <React.Fragment key={phase.id}>
+                        <Item id={phase.id} img={phase.img} text={phase.title} />
+                        <div className="arrow" />
+                      </React.Fragment>
+                    );
+                  }
+                  return <Item key={phase.id} id={phase.id} img={phase.img} text={phase.title} />;
+                })
+              }
             </StyledExperienceNav>
           </div>
 

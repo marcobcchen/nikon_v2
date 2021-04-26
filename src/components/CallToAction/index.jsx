@@ -13,15 +13,11 @@ const StyledCtaContainer = styled.div`
   flex-direction: column;
   justify-content: ${(props) => (props.amount === 1 ? 'center' : 'space-between')};
   align-items: center;
-  margin: 16px 0;
-  /* margin-top: 12%; */
-  /* margin-bottom: 16px; */
+  margin: ${(props) => (props.amount === 1 ? '0' : '16px 0')};
 
   @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
     flex-direction: row;
     margin: 16px -8px;
-    /* margin-top: 4%; */
-    /* margin-bottom: 16px; */
   }
 
   a{

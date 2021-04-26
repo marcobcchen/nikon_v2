@@ -23,5 +23,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // 取消 jsx 格式限制
     'react/jsx-one-expression-per-line': [0], // jsx中的表達式不換行
     'react/prop-types': [0], // 不進行 prop-types 驗證
+    'max-len': [0], // 不進行長度驗證
   },
 };

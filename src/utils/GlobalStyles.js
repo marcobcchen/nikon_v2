@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import TransitionStyles from './TransitionStyles';
+import CarouselStyles from './CarouselStyles';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -96,6 +97,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ${TransitionStyles}
+
+  ${CarouselStyles}
 `;
 
 export default GlobalStyle;

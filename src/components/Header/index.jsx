@@ -19,7 +19,9 @@ function Header() {
     setIsOpen(!isOpen);
   };
 
-  const getClassName = (path) => (pathname === path ? 'active' : undefined);
+  const getClass = (path) => (pathname === path ? 'active' : undefined);
+
+  const getClassName = (path) => (pathname.includes(path) ? 'active' : undefined);
 
   const handleWindowScroll = (e) => {
     const st = e.target.documentElement.scrollTop;
@@ -59,7 +61,7 @@ function Header() {
       </StyledHamburger>
 
       <StyledNav className={isOpen ? 'open' : undefined}>
-        <Link className={getClassName('/')} to="/">首頁</Link>
+        <Link className={getClass('/')} to="/">首頁</Link>
         <Link className={getClassName('/about')} to="/about">關於我們</Link>
         <Link className={getClassName('/expertise')} to="/expertise">專業配鏡</Link>
         <Link className={getClassName('/products')} to="/products">嚴選鏡片</Link>

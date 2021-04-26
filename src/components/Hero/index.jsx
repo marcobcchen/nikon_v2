@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import animateScrollTo from 'animated-scroll-to';
 import useScreenSize from '@/hooks/useScreenSize';
 
-const StyledHero = styled.div`
+const HeroContainer = styled.div`
   width: 100%;
   height: calc(100vh - 68px);
   margin-top: 68px;
@@ -18,8 +18,14 @@ const StyledHero = styled.div`
   @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
     height: calc(100vh - 72px);
     margin-top: 72px;
+    background: url(${(props) => (props.smImg ? props.smImg : props.mdImg)}) no-repeat center center;
+    background-size: cover;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
     background: url(${(props) => props.mdImg}) no-repeat center center;
     background-size: cover;
+    justify-content: ${(props) => props.justify};
   }
 
   h1{
@@ -89,7 +95,7 @@ const StyledHero = styled.div`
   }
 `;
 
-const StyledAnchor = styled.div`
+const Anchor = styled.div`
   position: absolute;
   display: block;
   width: 24px;
@@ -118,11 +124,28 @@ const StyledAnchor = styled.div`
   }
 `;
 
+const Icon = styled.div`
+  width: ${(props) => (props.special ? '193px' : '100px')};
+  margin-left: 0;
+
+  @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
+    width: ${(props) => (props.special ? '275px' : '178px')};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+    width: ${(props) => (props.special ? '275px' : '138px')};
+    margin-left: ${(props) => (props.special ? '131px' : '100px')};
+  }
+`;
+
 function Hero(props) {
-  const { xsImg, mdImg, text } = props;
+  const {
+    xsImg, smImg, mdImg, text, iconImg, special,
+  } = props;
   const { height } = useScreenSize();
   const { pathname } = useLocation();
   const [isHomePage, setIsHomePage] = useState(false);
+  const [isProductPage, setIsProductPage] = useState(false);
 
   const handleAnchor = () => {
     animateScrollTo(height, { speed: 1000 });
@@ -134,26 +157,44 @@ function Hero(props) {
     } else {
       setIsHomePage(false);
     }
+
+    if (pathname.includes('products/series')) {
+      setIsProductPage(true);
+    } else {
+      setIsProductPage(false);
+    }
   }, [pathname]);
 
+  const HeroText = () => (
+    <h1>
+      {
+        isHomePage
+          ? (
+            <>
+              <p className="hello-text-jp">ようこそ</p>
+              <p className="hello-text-tw">歡迎光臨</p>
+              <hr />
+            </>
+          )
+          : null
+      }
+      {text || '預設'}
+    </h1>
+  );
+
   return (
-    <StyledHero xsImg={xsImg} mdImg={mdImg}>
-      <h1>
-        {
-          isHomePage
-            ? (
-              <>
-                <p className="hello-text-jp">ようこそ</p>
-                <p className="hello-text-tw">歡迎光臨</p>
-                <hr />
-              </>
-            )
-            : null
-        }
-        {text || '預設'}
-      </h1>
-      <StyledAnchor onClick={handleAnchor} />
-    </StyledHero>
+    <HeroContainer xsImg={xsImg} smImg={smImg} mdImg={mdImg} justify={isProductPage ? 'flex-start' : 'center'}>
+      {
+        isProductPage
+          ? (
+            <Icon special={special}>
+              <img src={iconImg} alt="" />
+            </Icon>
+          )
+          : <HeroText />
+      }
+      <Anchor onClick={handleAnchor} />
+    </HeroContainer>
   );
 }
 

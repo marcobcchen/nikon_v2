@@ -1,8 +1,12 @@
 import React from 'react';
 
+const style = {
+  paddingTop: '100px',
+};
+
 function Error() {
   return (
-    <div>
+    <div style={style}>
       404!!
     </div>
   );
