@@ -91,7 +91,11 @@ export const StyledPageLinks = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4% 0;
+  margin: 8% 0;
+
+  @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+    margin: 4% 0;
+  }
 `;
 
 export const StyledLink = styled.div`
