@@ -57,6 +57,13 @@ const StyledSelect = styled(Select)`
   }
 `;
 
+const NoData = styled.div`
+  background-color: ${({ theme }) => theme.color.primary};
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 15px;
+`;
+
 const GOOGLE_MAP_API_KEY = 'AIzaSyCETbdHb2ETD9PAQ086JgtYE6p_ItV1za4';
 
 function Locations() {
@@ -71,9 +78,9 @@ function Locations() {
     setShowInfo(!showInfo);
   };
 
-  const handleApiLoaded = (map, maps) => {
-    console.log(map, maps);
-  };
+  // const handleApiLoaded = (map, maps) => {
+  //   console.log(map, maps);
+  // };
 
   const handleLocations = (value) => {
     const locationId = value[0].id;
@@ -105,6 +112,10 @@ function Locations() {
     setShowMarker(true);
   };
 
+  const customNoDataRenderer = () => (
+    <NoData>請先選擇縣市</NoData>
+  );
+
   useEffect(() => {
     setCenter(ShopData[0].shop[0].position);
   }, []);
@@ -131,6 +142,7 @@ function Locations() {
                 values={shopValue}
                 // valueField="name"
                 onChange={(value) => handleShop(value)}
+                noDataRenderer={() => customNoDataRenderer()}
               />
             </StyledController>
             <StyledMap>
@@ -140,7 +152,7 @@ function Locations() {
                 center={center}
                 defaultZoom={14}
                 yesIWantToUseGoogleMapApiInternals
-                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
                 options={{
                   fullscreenControl: false,
                   styles: MapStyle,
