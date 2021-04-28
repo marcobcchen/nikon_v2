@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import icon from '@/assets/images/locations/icon_map.png';
 
 export const StyledLocationsConatiner = styled.div`
   padding-top: 68px;
@@ -24,6 +25,16 @@ export const StyledMapContainer = styled.div`
 export const StyledMap = styled.div`
   width: 100%;
   height: 640px;
+  position: relative;
+`;
+
+export const StyledMapMarker = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: url(${icon}) no-repeat center center;
+  background-size: cover;
 `;
 
 export const StyledController = styled.div`
@@ -37,5 +48,16 @@ export const StyledController = styled.div`
   @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
     flex-direction: row;
     justify-content: flex-start;
+  }
+
+  > div{
+    width: 100%;
+    margin: 5px 0;
+
+    @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
+      width: 300px;
+      margin: 0;
+      margin-left: 30px;
+    }
   }
 `;
