@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from '@/utils/GlobalStyles';
 
-import Terms from '@/views/terms/';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BackToTop from './components/Button/BackToTop';
@@ -21,6 +20,10 @@ import S2P2 from './views/products/series2/Product2';
 import S2P3 from './views/products/series2/Product3';
 import S2P4 from './views/products/series2/Product4';
 import Locations from './views/locations/Locations';
+import Terms from './views/terms/Terms';
+import Privacy from './views/privacy/Privacy';
+import Sitemap from './views/sitemap/Sitemap';
+import Contact from './views/contact/Contact';
 import News from './views/news/News';
 import Error from './views/404/Error';
 
@@ -48,6 +51,9 @@ const App = () => (
           <Route path="/locations" component={Locations} />
           <Route path="/news" component={News} />
           <Route path="/terms" component={Terms} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/sitemap" component={Sitemap} />
+          <Route path="/contact" component={Contact} />
           <Route path="*" component={Error} />
         </Switch>
       </div>
