@@ -5,7 +5,12 @@ import bg2 from '@/assets/images/about/content_bg_md.jpg';
 export const StyledBg2 = styled.div`
     height: 320px;
     background: url(${bg2}) no-repeat center top;
-    background-attachment: fixed;
+    background-attachment: scroll;
+    background-size: cover;
+
+    @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+      background-attachment: fixed;
+    }
 `;
 
 export const StyledBg1 = styled.div`
@@ -57,7 +62,7 @@ export const StyledNewsItem = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    min-height: 390px;
+    min-height: 410px;
     padding: 32px 16px;
     text-align: justify;
 

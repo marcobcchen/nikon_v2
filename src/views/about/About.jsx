@@ -24,7 +24,12 @@ import bgImg from '@/assets/images/about/content_bg_md.jpg';
 const StyledBg = styled.div`
     height: 320px;
     background: url(${bgImg}) no-repeat center top;
-    background-attachment: fixed;
+    background-attachment: scroll;
+    background-size: cover;
+
+    @media (min-width: ${({ theme }) => theme.breakPoint.lg}) {
+      background-attachment: fixed;
+    }
 `;
 
 function About() {

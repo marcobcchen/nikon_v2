@@ -11,13 +11,11 @@ const ShopContainer = styled.div`
   top: 50%;
   width: calc(100% - 48px);
   transform: translate(-50%, -50%);
-
-  width: 320px;
-  /* height: 300px; */
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 30%);
 
   @media (min-width: ${({ theme }) => theme.breakPoint.md}) {
+    width: 320px;
     left: 85px;
     top: 45px;
     transform: translate(0%, 0%);
